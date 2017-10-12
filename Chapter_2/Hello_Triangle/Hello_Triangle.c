@@ -53,7 +53,7 @@ GLuint LoadShader ( GLenum type, const char *shaderSrc )
    GLuint shader;
    GLint compiled;
 
-   // Create the shader object
+   // Create the shader object(创建新指定类型的新着色器对象)
    shader = glCreateShader ( type );
 
    if ( shader == 0 )
@@ -61,10 +61,10 @@ GLuint LoadShader ( GLenum type, const char *shaderSrc )
       return 0;
    }
 
-   // Load the shader source
+   // Load the shader source(加载到着色器对象)
    glShaderSource ( shader, 1, &shaderSrc, NULL );
 
-   // Compile the shader
+   // Compile the shader(编译)
    glCompileShader ( shader );
 
    // Check the compile status
@@ -100,6 +100,7 @@ GLuint LoadShader ( GLenum type, const char *shaderSrc )
 int Init ( ESContext *esContext )
 {
    UserData *userData = esContext->userData;
+   //顶点着色器
    char vShaderStr[] =
       "#version 300 es                          \n"
       "layout(location = 0) in vec4 vPosition;  \n"
@@ -107,7 +108,7 @@ int Init ( ESContext *esContext )
       "{                                        \n"
       "   gl_Position = vPosition;              \n"
       "}                                        \n";
-
+   //片段着色器
    char fShaderStr[] =
       "#version 300 es                              \n"
       "precision mediump float;                     \n"
@@ -133,7 +134,7 @@ int Init ( ESContext *esContext )
    {
       return 0;
    }
-
+   //把顶点着色器和片段着色器连接到程序对象上
    glAttachShader ( programObject, vertexShader );
    glAttachShader ( programObject, fragmentShader );
 
@@ -207,9 +208,9 @@ void Shutdown ( ESContext *esContext )
 int esMain ( ESContext *esContext )
 {
    esContext->userData = malloc ( sizeof ( UserData ) );
-
+   //创建窗口
    esCreateWindow ( esContext, "Hello Triangle", 320, 240, ES_WINDOW_RGB );
-
+   //初始化绘图回调函数
    if ( !Init ( esContext ) )
    {
       return GL_FALSE;
