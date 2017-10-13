@@ -177,24 +177,27 @@ int Init ( ESContext *esContext )
 void Draw ( ESContext *esContext )
 {
    UserData *userData = esContext->userData;
+   //三角形的各个点
    GLfloat vVertices[] = {  0.0f,  0.5f, 0.0f,
                             -0.5f, -0.5f, 0.0f,
                             0.5f, -0.5f, 0.0f
                          };
 
-   // Set the viewport
+   // Set the viewport(设置原点宽度高度)
    glViewport ( 0, 0, esContext->width, esContext->height );
 
-   // Clear the color buffer
+   // Clear the color buffer(清除颜色缓冲区)
    glClear ( GL_COLOR_BUFFER_BIT );
 
    // Use the program object
    glUseProgram ( userData->programObject );
 
    // Load the vertex data
+   //加载到顶点着色器
    glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 0, vVertices );
    glEnableVertexAttribArray ( 0 );
 
+   //绘制图元
    glDrawArrays ( GL_TRIANGLES, 0, 3 );
 }
 
