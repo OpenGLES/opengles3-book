@@ -92,6 +92,7 @@ int Init ( ESContext *esContext )
    userData->programObject = esLoadProgram ( vShaderStr, fShaderStr );
 
    // Get the uniform locations
+   //加载到统一变量供着色器使用
    userData->mvpLoc = glGetUniformLocation ( userData->programObject, "u_mvpMatrix" );
 
    // Generate the vertex data->生成顶点数据 (放大倍数的立方体坐标，正常立方体坐标，纹理坐标)
