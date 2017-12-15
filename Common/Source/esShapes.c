@@ -174,7 +174,7 @@ int ESUTIL_API esGenCube ( float scale, GLfloat **vertices, GLfloat **normals,
    int i;
    int numVertices = 24;
    int numIndices = 36;
-
+   //4组表示一个面
    GLfloat cubeVerts[] =
    {
       -0.5f, -0.5f, -0.5f,

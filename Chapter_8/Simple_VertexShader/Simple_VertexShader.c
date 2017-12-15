@@ -46,8 +46,11 @@ typedef struct
    GLint  mvpLoc;
 
    // Vertex daata
+   //顶点坐标
    GLfloat  *vertices;
+   //三角形组成的排列顺便
    GLuint   *indices;
+   //排列顺便的个数
    int       numIndices;
 
    // Rotation angle
@@ -91,7 +94,7 @@ int Init ( ESContext *esContext )
    // Get the uniform locations
    userData->mvpLoc = glGetUniformLocation ( userData->programObject, "u_mvpMatrix" );
 
-   // Generate the vertex data
+   // Generate the vertex data->生成顶点数据 (放大倍数的立方体坐标，正常立方体坐标，纹理坐标)
    userData->numIndices = esGenCube ( 1.0, &userData->vertices,
                                       NULL, NULL, &userData->indices );
 
@@ -168,6 +171,7 @@ void Draw ( ESContext *esContext )
    glVertexAttrib4f ( 1, 1.0f, 0.0f, 0.0f, 1.0f );
 
    // Load the MVP matrix
+   //加载到统一变量中，供着色器使用
    glUniformMatrix4fv ( userData->mvpLoc, 1, GL_FALSE, ( GLfloat * ) &userData->mvpMatrix.m[0][0] );
 
    // Draw the cube

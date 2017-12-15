@@ -64,6 +64,8 @@ esScale ( ESMatrix *result, GLfloat sx, GLfloat sy, GLfloat sz )
    result->m[2][3] *= sz;
 }
 
+
+//[tx,ty,tz,1]*[4*4]
 void ESUTIL_API
 esTranslate ( ESMatrix *result, GLfloat tx, GLfloat ty, GLfloat tz )
 {
