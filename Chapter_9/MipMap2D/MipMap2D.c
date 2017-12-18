@@ -188,13 +188,13 @@ GLuint CreateMipMappedTexture2D( )
       return 0;
    }
 
-   // Generate a texture object
+   // Generate a texture object 生成纹理
    glGenTextures ( 1, &textureId );
 
-   // Bind the texture object
+   // Bind the texture object 绑定纹理
    glBindTexture ( GL_TEXTURE_2D, textureId );
 
-   // Load mipmap level 0
+   // Load mipmap level 0 加载2D和立方体纹理
    glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGB, width, height,
                   0, GL_RGB, GL_UNSIGNED_BYTE, pixels );
 
