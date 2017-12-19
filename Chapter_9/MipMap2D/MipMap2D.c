@@ -290,13 +290,14 @@ int Init ( ESContext *esContext )
 void Draw ( ESContext *esContext )
 {
    UserData *userData = esContext->userData;
-   GLfloat vVertices[] = { -0.5f,  0.5f, 0.0f, 1.5f,  // Position 0
+   //z轴为控制远近(透视原来)
+   GLfloat vVertices[] = { -0.5f,  0.5f, 0.0f, 2.5f,  // Position 0
                             0.0f,  0.0f,              // TexCoord 0 
                            -0.5f, -0.5f, 0.0f, 0.75f, // Position 1
                             0.0f,  1.0f,              // TexCoord 1
                             0.5f, -0.5f, 0.0f, 0.75f, // Position 2
                             1.0f,  1.0f,              // TexCoord 2
-                            0.5f,  0.5f, 0.0f, 1.5f,  // Position 3
+                            0.5f,  0.5f, 0.0f, 2.5f,  // Position 3
                             1.0f,  0.0f               // TexCoord 3
                          };
    GLushort indices[] = { 0, 1, 2, 0, 2, 3 };

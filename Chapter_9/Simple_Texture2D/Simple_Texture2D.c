@@ -60,15 +60,19 @@ GLuint CreateSimpleTexture2D( )
    GLuint textureId;
 
    // 2x2 Image, 3 bytes per pixel (R, G, B)
-   GLubyte pixels[4 * 3] =
+   GLubyte pixels[8 * 3] =
    {
       255,   0,   0, // Red
-        0, 255,   0, // Green
-        0,   0, 255, // Blue
-      255, 255,   0  // Yellow
+       0, 255,   0, // Green
+       0,   0, 255, // Blue
+       255, 255,   0, // Yellow
+       255,   0,   0, // Red
+       0, 255,   0, // Green
+       0,   0, 255, // Blue
+       255, 255,   0  // Yellow
    };
 
-   // Use tightly packed data
+   // Use tightly packed data 设置解包对齐
    glPixelStorei ( GL_UNPACK_ALIGNMENT, 1 );
 
    // Generate a texture object
@@ -77,8 +81,9 @@ GLuint CreateSimpleTexture2D( )
    // Bind the texture object
    glBindTexture ( GL_TEXTURE_2D, textureId );
 
+    
    // Load the texture
-   glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_UNSIGNED_BYTE, pixels );
+   glTexImage2D ( GL_TEXTURE_2D, 0, GL_RGB, 2, 4, 0, GL_RGB, GL_UNSIGNED_BYTE, pixels );
 
    // Set the filtering mode
    glTexParameteri ( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
@@ -136,6 +141,7 @@ int Init ( ESContext *esContext )
 void Draw ( ESContext *esContext )
 {
    UserData *userData = esContext->userData;
+   //这样对齐表示的意义？
    GLfloat vVertices[] = { -0.5f,  0.5f, 0.0f,  // Position 0
                             0.0f,  0.0f,        // TexCoord 0 
                            -0.5f, -0.5f, 0.0f,  // Position 1
